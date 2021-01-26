@@ -35,6 +35,7 @@ end
 if AMDGPU.configured
     @test length(get_agents()) > 0
     if length(get_agents()) > 0
+        #=
         @testset "HSA" begin
             include("hsa/error.jl")
             include("hsa/agent.jl")
@@ -58,7 +59,9 @@ if AMDGPU.configured
             include("device/exceptions.jl")
             include("device/deps.jl")
         end
+        =#
         @testset "ROCArray" begin
+            #=
             @testset "GPUArrays test suite" begin
                 #TestSuite.test(ROCArray)
                 for name in keys(TestSuite.tests)
@@ -77,6 +80,7 @@ if AMDGPU.configured
                     end
                 end
             end
+            =#
             @testset "ROCm External Libraries" begin
                 if parse(Bool, get(ENV, "CI", "false"))
                     @test isdefined(AMDGPU, :rocBLAS)

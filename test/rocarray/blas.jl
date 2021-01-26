@@ -68,6 +68,7 @@ end
             @test_throws DimensionMismatch mul!(dy, dA, dx)
         end
 
+        #=
         @testset "mul! y = $f(A) * x * $Ts(a) + y * $Ts(b)" for f in (identity, transpose, adjoint), Ts in (Int, elty)
             y, A, x = rand(elty, 5), rand(elty, 5, 5), rand(elty, 5)
             dy, dA, dx = ROCArray(y), ROCArray(A), ROCArray(x)
@@ -75,6 +76,7 @@ end
             mul!(y, f(A), x, Ts(1), Ts(2))
             @test Array(dy) ≈ y
         end
+        =#
 
         A = rand(elty,m,n)
         dA = ROCArray(A)
